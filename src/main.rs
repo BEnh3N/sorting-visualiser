@@ -8,15 +8,18 @@ use sorting::algorithms::merge::merge_sort;
 const WIDTH: i32 = 1024;
 const HEIGHT: i32 = 512;
 const LINE_WIDTH: i32 = 2;
-const LINE_MUL: i32 = 1;
+
+const NUM_ITEMS: i32 = WIDTH / LINE_WIDTH;
+const LINE_MUL: i32 = HEIGHT / NUM_ITEMS;
 
 fn main() {
     let (mut handle, thread) = init()
         .size(WIDTH, HEIGHT)
         .title("Sorting Algorithms")
+        .resizable()
         .build();
 
-    let mut state = State::new(512);
+    let mut state = State::new(NUM_ITEMS as u32);
 
     while !handle.window_should_close() {
         let mut draw = handle.begin_drawing(&thread);
