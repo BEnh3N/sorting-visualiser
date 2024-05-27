@@ -26,14 +26,29 @@ fn main() {
         // Draw array to screen
         let mut x = 0;
         for value in &state.array {
-            draw.draw_rectangle(x, state.height - (*value as i32 * state.line_mul), state.line_width, state.height, Color::WHITE);
+            draw.draw_rectangle(
+                x,
+                state.height - (*value as i32 * state.line_mul),
+                state.line_width,
+                state.height,
+                Color::WHITE,
+            );
             x += state.line_width
         }
 
         // GUI
-        let shuffle = draw.gui_button(Rectangle::new(4., 4., 120., 24.), rstr!("SHUFFLE ARRAY").into());
-        let bubble = draw.gui_button(Rectangle::new(4., 30., 120., 24.), rstr!("BUBBLE SORT").into());
-        let merge = draw.gui_button(Rectangle::new(124., 30., 120., 24.), rstr!("MERGE SORT").into());
+        let shuffle = draw.gui_button(
+            Rectangle::new(4., 4., 120., 24.),
+            Some(rstr!("SHUFFLE ARRAY")),
+        );
+        let bubble = draw.gui_button(
+            Rectangle::new(4., 30., 120., 24.),
+            Some(rstr!("BUBBLE SORT")),
+        );
+        let merge = draw.gui_button(
+            Rectangle::new(124., 30., 120., 24.),
+            Some(rstr!("MERGE SORT")),
+        );
 
         // Handle GUI button presses
         if shuffle {
